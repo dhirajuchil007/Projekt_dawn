@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="mainViewModel"
+            type="com.velocityappsdj.projektdawn.viewmodel.MainViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activity.MainActivity">
+
+        <include
+            android:id="@+id/toolbar_projects"
+            layout="@layout/toolbar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            tools:itemCount="2"
+            tools:listitem="@layout/project_list_item"
+            android:id="@+id/recyclerProject"
+            android:layout_below="@+id/toolbar_projects"
+            android:layout_height="match_parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddProject"
+            android:layout_width="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:onClick="@{()->mainViewModel.launchBottomSheet()}"
+            android:src="@drawable/ic_baseline_add_24"
+            android:layout_margin="16dp"
+            app:fabCustomSize="70dp"
+            app:maxImageSize="35dp"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+</layout>

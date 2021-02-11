@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "837361676612",
+    "project_id": "projekt-dawn",
+    "storage_bucket": "projekt-dawn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837361676612:android:9e1f99b1d20d48e022e711",
+        "android_client_info": {
+          "package_name": "com.velocityappsdj.projektdawn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "837361676612-t038lhr8k07ks7ctq1ii89b41g18tgrv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCgWEmCDxomXE6nHI88fkZNxqO02teibk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "837361676612-t038lhr8k07ks7ctq1ii89b41g18tgrv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
