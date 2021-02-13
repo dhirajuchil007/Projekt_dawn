@@ -1,9 +1,11 @@
 package com.velocityappsdj.projektdawn.viewmodel
 
+import android.app.Activity
 import android.content.Context
 import android.text.Layout
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +26,8 @@ class MainViewModel : ViewModel() {
         projects = ProjectRepo().getProjects().toMutableList()
         _projects.value = projects
     }
+
+
 
 
     /* fun updateProjectList(projects: List<Project>) {
@@ -47,6 +51,12 @@ class MainViewModel : ViewModel() {
          projectListViewModels.add(ProjectListViewModel(project))
          projectAdapter.notifyDataSetChanged()
      }*/
+
+    fun setChangeListener(activity: Activity){
+        _projects.observe(, Observer {
+
+        })
+    }
 
 
     fun launchBottomSheet() {
