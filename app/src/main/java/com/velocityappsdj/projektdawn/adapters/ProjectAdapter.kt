@@ -9,8 +9,11 @@ import com.velocityappsdj.projektdawn.databinding.ProjectListItemBinding
 import com.velocityappsdj.projektdawn.model.Project
 import com.velocityappsdj.projektdawn.viewmodel.ProjectListViewModel
 
-class ProjectAdapter(var projectListViewModel: ProjectListViewModel) :
+class ProjectAdapter(var projectList: List<Project>, val listener: ProjectClickListener) :
     RecyclerView.Adapter<ProjectAdapter.MyViewHolder>() {
+    interface ProjectClickListener {
+        fun onClick(project: Project);
+    }
 
     class MyViewHolder(private var projectListItemBinding: ProjectListItemBinding) :
         RecyclerView.ViewHolder(projectListItemBinding.root) {
@@ -18,6 +21,7 @@ class ProjectAdapter(var projectListViewModel: ProjectListViewModel) :
             projectListItemBinding.project = project
             projectListItemBinding.executePendingBindings()
         }
+
 
     }
 
@@ -32,11 +36,15 @@ class ProjectAdapter(var projectListViewModel: ProjectListViewModel) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        holder.bind(projectListViewModel.getProjectsList()[position])
+        val project = projectList[position]
+        holder.bind(project)
+        holder.itemView.setOnClickListener {
+            listener.onClick(project)
+        }
 
     }
 
     override fun getItemCount(): Int {
-        return projectListViewModel.getProjectsList().size
+        return projectList.size
     }
 }

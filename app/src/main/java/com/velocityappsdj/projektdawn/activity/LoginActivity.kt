@@ -16,7 +16,12 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.velocityappsdj.projektdawn.R
+import com.velocityappsdj.projektdawn.model.User
+import com.velocityappsdj.projektdawn.repository.LoginRepo
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
@@ -30,6 +35,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_login)
         auth = FirebaseAuth.getInstance()
 
+        //enabling offline caching for firebase realtime db
+        Firebase.database.setPersistenceEnabled(true)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.web_client_id))
@@ -81,9 +88,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun updateUI(user: FirebaseUser?) {
-        val intent: Intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+    private fun updateUI(firebaseUser: FirebaseUser?) {
+        LoginRepo().addUser(User(firebaseUser?.uid))
+        if (firebaseUser != null) {
+            val intent: Intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         //Toast.makeText(this, "lol" + user?.email, Toast.LENGTH_SHORT).show()
     }

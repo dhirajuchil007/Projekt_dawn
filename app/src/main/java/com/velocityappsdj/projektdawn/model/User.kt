@@ -1,3 +1,3 @@
 package com.velocityappsdj.projektdawn.model
 
-data class User(var id:String, var email:String)
+data class User(var id: String? = null)
